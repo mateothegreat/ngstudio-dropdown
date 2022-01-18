@@ -55,9 +55,7 @@ const instance = this.dropdownService.open('one', 'myElementId', this.one, {
 
 instance.selected$.subscribe(selected => {
 
-    console.log(selected);
+    console.log(`List item selected: ${ selected }`);
 
 });
-
-}
 ```
