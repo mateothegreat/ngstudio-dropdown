@@ -13,21 +13,20 @@ import { FormControl } from '@angular/forms';
 export class DropdownComponent implements OnInit {
 
     @ViewChild('dropdown', { read: ElementRef, static: false }) public dropdownElementRef: ElementRef;
+    @ViewChild('input', { read: ElementRef, static: false }) public inputElementRef: ElementRef;
 
     public config: DropdownConfig<any>;
     public instance: DropdownInstance;
     public control: FormControl = new FormControl();
     public isOpen: boolean = true;
     public filtered: Array<any>;
-
-    // public isOpen: boolean;
-
     public items: Array<any>;
 
     public constructor() {
 
+        console.log(11);
         this.control.valueChanges.subscribe(value => this.filter(value));
-        console.log(12);
+
     }
 
     @HostListener('document:click', [ '$event' ])
@@ -36,6 +35,21 @@ export class DropdownComponent implements OnInit {
         if (!this.dropdownElementRef.nativeElement.contains(event.target)) {
 
             this.isOpen = false;
+
+        }
+
+    }
+
+    @HostListener('document:keydown.escape', [ '$event' ])
+    public onEscapeHandler(event: any): void {
+
+        if (this.dropdownElementRef.nativeElement.contains(event.target)) {
+
+            this.toggle();
+
+        } else if (this.isOpen) {
+
+            this.toggle();
 
         }
 
@@ -62,7 +76,14 @@ export class DropdownComponent implements OnInit {
 
             this.control.reset();
 
+
             this.isOpen = true;
+
+            setTimeout(() => {
+
+                this.inputElementRef.nativeElement.focus();
+
+            }, 100);
 
         }
 

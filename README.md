@@ -1,27 +1,63 @@
-# NgstudioDropdown
+# Rich dropdown like a boss 🚀
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
+![screenshot](docs/screenshot.png)
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* Supports multiple instances.
+* Use a custom component to render each list item.
+* Uses Observables for data source changes and event tracking.
+* Use a default (light/dark) theme or customize to your liking.
+* Escape key closes the dropdown.
+* Programmatically manage dropdown states.
+* Configure every aspect of the dropdown component per instance.
+* Search and filter against all data source object properties.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm install @ngstudio/dropdown
+```
 
-## Build
+## Example
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```typescript
+const instance = this.dropdownService.open('one', 'myElementId', this.one, {
 
-## Running unit tests
+    name: 'one',
+    rowComponentType: DataRowComponent,
+    rowComponentPropertyName: 'data',
+    closeAfterSelect: false,
+    theme: DropdownThemes.dark,
+    data$,
+    selectedRenderFn: (item: any) => {
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+        return item[ 'firstname' ];
 
-## Running end-to-end tests
+    },
+    componentConfig: {
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+        top: {
 
-## Further help
+            show: true
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+        },
+
+        bottom: {
+
+            show: true
+
+        }
+
+    }
+
+});
+
+instance.selected$.subscribe(selected => {
+
+    console.log(selected);
+
+});
+
+}
+```

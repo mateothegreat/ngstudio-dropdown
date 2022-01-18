@@ -48,7 +48,8 @@
                      [class.light]="config.theme.dropdown.top.input.placeholderClassName === 'light'"
                      [class.dark]="config.theme.dropdown.top.input.placeholderClassName === 'dark'">
 
-                    <input [formControl]="control"
+                    <input #input
+                           [formControl]="control"
                            [style.background]="config.theme.dropdown.top.input.background"
                            [style.color]="config.theme.dropdown.top.input.color"
                            placeholder="Search..">
