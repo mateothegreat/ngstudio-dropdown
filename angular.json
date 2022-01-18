@@ -127,6 +127,37 @@
           }
         }
       }
+    },
+    "dropdown": {
+      "projectType": "library",
+      "root": "projects/dropdown",
+      "sourceRoot": "projects/dropdown/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/dropdown/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/dropdown/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/dropdown/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/dropdown/src/test.ts",
+            "tsConfig": "projects/dropdown/tsconfig.spec.json",
+            "karmaConfig": "projects/dropdown/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngstudio-dropdown"

@@ -1,0 +1,19 @@
+:host {
+
+    .item {
+
+        padding: 5px;
+        cursor: pointer;
+        color: #666;
+        border-radius: 3px;
+
+        &:hover {
+
+            background: #466249;
+            color: #fff;
+
+        }
+
+    }
+
+}

@@ -1,0 +1,133 @@
+<div #dropdown
+     [style.background]="config.theme.background"
+     [style.width]="config.theme.width"
+     [class.open]="isOpen"
+     class="display">
+
+    <div (click)="toggle()" class="selected">
+
+        <div class="items">
+
+            <div *ngFor="let item of instance.selected; let i = index"
+                 class="item">
+
+                <lib-selected [config]="config"
+                              [item]="item"
+                              (click)="remove(i); $event.stopPropagation();"></lib-selected>
+
+            </div>
+
+        </div>
+
+        <div class="ellipsis">
+
+            <div class="count">
+
+                ({{ instance.selected.length }})
+
+            </div>
+
+            <div class="icon">...</div>
+
+        </div>
+
+    </div>
+
+    <div *ngIf="isOpen"
+         [style.border-color]="config.theme.dropdown.borderColor"
+         class="options">
+
+        <div [style.background]="config.theme.dropdown.top.background"
+             class="top">
+
+            <div *ngIf="config.componentConfig.top?.show"
+                 [style.background]="config.theme.dropdown.top.input.background"
+                 class="input">
+
+                <div class="control"
+                     [class.light]="config.theme.dropdown.top.input.placeholderClassName === 'light'"
+                     [class.dark]="config.theme.dropdown.top.input.placeholderClassName === 'dark'">
+
+                    <input [formControl]="control"
+                           [style.background]="config.theme.dropdown.top.input.background"
+                           [style.color]="config.theme.dropdown.top.input.color"
+                           placeholder="Search..">
+
+                </div>
+
+                <!--                <div (click)="isOpen = false" class="close">-->
+
+                <!--                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"-->
+                <!--                         width="20.000000pt" height="20.000000pt" viewBox="0 0 24.000000 24.000000"-->
+                <!--                         preserveAspectRatio="xMidYMid meet">-->
+
+                <!--                        <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)"-->
+                <!--                           stroke="none">-->
+                <!--    -->
+                <!--                            <path d="M44 187 c-3 -8 -4 -43 -2 -78 l3 -64 75 0 75 0 0 75 0 75 -73 3 c-55-->
+                <!--2 -74 -1 -78 -11z m58 -34 c17 -15 19 -15 38 2 26 24 39 11 15 -15 -17 -19-->
+                <!-- -17 -21 0 -40 24 -26 11 -39 -15 -15 -19 17 -21 17 -40 0 -26 -24 -39 -11 -15-->
+                <!--15 17 19 17 21 2 38 -30 33 -18 45 15 15z"/>-->
+                <!--                        </g>-->
+
+                <!--                    </svg>-->
+
+                <!--                </div>-->
+
+            </div>
+
+            <div [style.background]="config.theme.dropdown.top.list.background"
+                 [style.height]="config.theme.dropdown.top.list.height"
+                 class="list-items">
+
+                <lib-item *ngFor="let item of filtered"
+                          (click)="add(item)"
+                          [instance]="instance"
+                          [selected]="instance.selected.indexOf(item) > -1"
+                          [item]="item"></lib-item>
+
+            </div>
+
+        </div>
+
+        <div *ngIf="config.componentConfig.bottom?.show"
+             [style.background]="config.theme.dropdown.footer.background"
+             [style.color]="config.theme.dropdown.footer.color"
+             class="bottom">
+
+            <div (click)="selectAll()" class="select-all">
+
+                <ng-container *ngIf="instance.selected.length !== items.length">Select all</ng-container>
+                <ng-container *ngIf="instance.selected.length === items.length">Clear</ng-container>
+
+            </div>
+
+            <div [style.color]="config.theme.dropdown.footer.label.color"
+                 [style.font-size]="config.theme.dropdown.footer.label.fontSize"
+                 class="left">
+
+                Selected {{ instance.selected.length }} of {{ items.length }} items.
+
+            </div>
+
+            <div *ngIf="config.componentConfig.bottom?.button?.show"
+                 class="right">
+
+                <button (click)="apply()"
+                        [style.background]="config.theme.dropdown.footer.button.background"
+                        [style.border-color]="config.theme.dropdown.footer.button.borderColor"
+                        [style.color]="config.theme.dropdown.footer.button.color">
+
+                    {{ config.componentConfig.bottom?.button?.label }}
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+

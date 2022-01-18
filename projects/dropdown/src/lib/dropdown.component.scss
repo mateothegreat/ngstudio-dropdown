@@ -1,0 +1,220 @@
+:host {
+
+    .display {
+
+        height: 45px;
+        border-radius: 5px;
+        cursor: pointer;
+        overflow: hidden;
+
+        .selected {
+
+            height: 100%;
+
+            display: flex;
+            align-items: center;
+
+            padding-left: 5px;
+            padding-right: 5px;
+
+            -webkit-box-shadow: inset 0px 0px 15px 8px rgba(0, 0, 0, .5);
+            box-shadow: inset 0px 0px 15px 8px rgba(0, 0, 0, .5);
+
+            .items {
+
+                flex: 1;
+
+                display: flex;
+                align-items: center;
+
+                overflow: scroll;
+
+                .item {
+
+                    margin: 3px;
+
+                }
+
+            }
+
+            .ellipsis {
+
+                display: flex;
+                align-items: center;
+                background: #111;
+
+                color: #666;
+                padding: 5px 5px 5px 0;
+                cursor: pointer;
+
+                &:hover {
+
+                    font-weight: bold;
+                    color: mediumseagreen;
+
+                }
+
+                .count {
+
+                    font-size: 13px;
+                    padding: 5px 5px 5px 10px;
+                    min-width: 20px;
+                    text-align: center;
+
+                }
+
+            }
+
+        }
+
+        .options {
+
+            display: flex;
+            flex-direction: column;
+            margin-top: -0px;
+
+            position: absolute;
+            width: 300px;
+            border: 2px solid;
+            border-radius: 0 0 3px 3px;
+            border-top: 0;
+            background: #eee;
+
+            .top {
+
+                flex: 1;
+
+                .input {
+
+                    display: flex;
+                    align-items: center;
+                    padding: 7px;
+                    padding-top: 7px;
+                    padding-bottom: 7px;
+
+                    .control {
+
+                        flex: 1;
+
+                        display: flex;
+
+                        input {
+
+                            flex: 1;
+                            padding: 5px;
+                            font-size: 15px;
+                            outline: none;
+                            background: #666;
+                            border: 1px solid #666;
+                            border-top: 0;
+                            border-left: 0;
+                            border-right: 0;
+                        }
+
+                    }
+
+                    .light {
+
+                        input {
+
+                            &::placeholder {
+
+                                color: #000;
+
+                            }
+
+                        }
+
+                    }
+
+                    .dark {
+
+                        input {
+
+                            &::placeholder {
+
+                                color: #aaa;
+
+                            }
+
+                        }
+
+                    }
+
+                    .close {
+
+                        cursor: pointer;
+                        color: #666;
+                        padding-left: 5px;
+
+                        svg {
+
+                            margin-top: 8px;
+                            fill: #333;
+                        }
+
+                        &:hover {
+
+                            color: #000;
+
+                        }
+
+                    }
+
+                }
+
+                .list-items {
+
+                    overflow: auto;
+                    padding: 10px;
+
+                }
+
+            }
+
+            .bottom {
+
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                background: #ddd;
+
+                padding: 5px;
+
+                button {
+
+                    padding: 5px;
+                    border: 1px solid #2222;
+                    border-radius: 3px;
+                    cursor: pointer;
+
+                }
+
+                .left {
+
+                    font-size: 14px;
+                    padding: 4px;
+
+                }
+
+                .select-all {
+
+                    font-size: 13px;
+
+                }
+
+            }
+
+        }
+
+    }
+
+    .open {
+
+        border-bottom-left-radius: 0;
+
+
+    }
+
+}
