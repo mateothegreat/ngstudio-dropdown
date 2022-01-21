@@ -1,7 +1,7 @@
 import { Injectable, ViewContainerRef } from '@angular/core';
 import { DropdownInstance } from './dropdown-instance';
 import { DropdownConfig } from './dropdown-config';
-import { DynamicComponentFactoryService } from '@ngstudio/dynamic-component-factory';
+import { DynamicComponentFactoryService, DynamicComponentFactoryInstance } from '@ngstudio/dynamic-component-factory';
 import { DropdownComponent } from './dropdown.component';
 
 @Injectable({
@@ -15,7 +15,9 @@ export class DropdownService {
 
     }
 
-    public open(name: string, elementId: string, viewContainerRef: ViewContainerRef, config: DropdownConfig<any>): DropdownInstance {
+    public open(name: string,
+                config: DropdownConfig<any>,
+                injectionPoint?: string | ViewContainerRef): DropdownInstance {
 
         config = new DropdownConfig(config);
         config.name = name;
@@ -24,7 +26,25 @@ export class DropdownService {
 
         this.instances.push(instance);
 
-        const ref = this.dynamicComponentFactoryService.createInElementById(name, elementId, DropdownComponent);
+        let ref: DynamicComponentFactoryInstance<DropdownComponent>;
+
+        if (injectionPoint) {
+
+            if (typeof injectionPoint === 'string') {
+
+                ref = this.dynamicComponentFactoryService.createInElementById(name, injectionPoint, DropdownComponent);
+
+            } else {
+
+                ref = this.dynamicComponentFactoryService.createInContainer(name, injectionPoint, DropdownComponent);
+
+            }
+
+        } else {
+
+            ref = this.dynamicComponentFactoryService.createInApplicationRoot(name, DropdownComponent);
+
+        }
 
         ref.componentRef.instance.config = config;
         ref.componentRef.instance.instance = instance;

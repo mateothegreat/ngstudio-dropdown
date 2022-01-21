@@ -4,13 +4,16 @@
 
 ## Features
 
-* Supports multiple instances.
-* Use a custom component to render each list item.
+* Inject multiple instances using a `@ViewChild`, element id, or at the application root without needing to embed any
+  html.
+* Use a [custom component](src/app/data-row/data-row.component.ts) to render each list item.
 * Uses Observables for data source changes and event tracking.
-* Use a default (light/dark) theme or customize to your liking.
-* Escape key closes the dropdown.
+* Use a default ([light/dark](projects/dropdown/src/lib/dropdown-themes.ts)) theme
+  or [customize](projects/dropdown/src/lib/dropdown-theme.ts) to your liking.
+* Close dropdown on escape keypress and/or click.
 * Programmatically manage dropdown states.
-* Configure every aspect of the dropdown component per instance.
+* Configure every aspect of the [dropdown component](projects/dropdown/src/lib/dropdown-config-component.ts) per
+  instance.
 * Search and filter against all data source object properties.
 
 ## Installation
@@ -59,3 +62,5 @@ instance.selected$.subscribe(selected => {
 
 });
 ```
+
+For a full example see [src/app/app.component.ts](src/app/app.component.ts).

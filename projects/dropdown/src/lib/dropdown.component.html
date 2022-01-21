@@ -1,7 +1,7 @@
 <div #dropdown
      [style.background]="config.theme.background"
      [style.width]="config.theme.width"
-     [class.open]="isOpen"
+     [class.open]="instance.state === 'OPEN'"
      class="display">
 
     <div (click)="toggle()" class="selected">
@@ -33,7 +33,7 @@
 
     </div>
 
-    <div *ngIf="isOpen"
+    <div *ngIf="instance.state === 'OPEN'"
          [style.border-color]="config.theme.dropdown.borderColor"
          class="options">
 

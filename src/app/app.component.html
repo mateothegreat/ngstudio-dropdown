@@ -1,3 +1,122 @@
-above
-<div id="one"></div>
-below
+<div class="top">
+
+    <div class="left">
+
+        <a href="http://"
+           target="_blank">
+
+            @ngstudio/dropdown
+
+            <i class="fab fa-github"></i>
+
+        </a><br>
+
+        Highly customizable rich dropdown & select component.
+
+    </div>
+
+    <div class="right">
+
+        <span class="code">
+
+            <i class="fad fa-terminal"></i>
+
+            npm install @ngstudio/dropdown</span>
+
+    </div>
+
+</div>
+
+<div class="demos">
+
+    <div class="demo">
+
+        <div class="description">
+
+            Example:<br>
+            Instance created by using an element by id
+
+        </div>
+
+        <div id="one"></div>
+
+        <div class="below">
+
+            <div class="detail buttons">
+
+                <button (click)="instances['one'].toggle()">
+
+                    Toggle
+
+                    <span class="code">
+
+                        <i class="fad fa-terminal"></i>
+
+                        instance.state
+
+                    </span>
+
+                </button>
+
+                <div class="values">
+
+                    <span>Values:</span> <br>
+
+                    ({{ instances['one']?.state }})
+
+                </div>
+
+            </div>
+
+            <div class="detail values">
+
+                <span>Values
+
+                    <span class="code">
+
+                        <i class="fad fa-terminal"></i>
+
+                        instance.selected
+
+                    </span>
+
+                </span>:<br>
+
+                {{ instances['one']?.selected | json }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="demo">
+
+        <div class="description">
+
+            Example:<br>
+            Instance created by using
+
+            <span class="code">
+
+                <i class="fad fa-terminal"></i>
+
+                @ViewChild
+
+            </span>
+
+        </div>
+
+        <div #two></div>
+
+        <div class="below">
+
+            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections
+            1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact
+            original form, accompanied by English versions from the 1914 translation by H. Rackham.
+
+        </div>
+
+    </div>
+
+</div>

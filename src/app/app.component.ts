@@ -3,6 +3,7 @@ import { DropdownService } from '../../projects/dropdown/src/lib/dropdown.servic
 import { DataRowComponent } from './data-row/data-row.component';
 import { ReplaySubject } from 'rxjs';
 import { DropdownThemes } from '../../projects/dropdown/src/lib/dropdown-themes';
+import { DropdownInstance } from '../../projects/dropdown/src/lib/dropdown-instance';
 
 @Component({
     selector: 'app-root',
@@ -11,14 +12,15 @@ import { DropdownThemes } from '../../projects/dropdown/src/lib/dropdown-themes'
 })
 export class AppComponent implements AfterViewInit {
 
-    @ViewChild('one', { read: ViewContainerRef }) public one: ViewContainerRef;
+    @ViewChild('two', { read: ViewContainerRef }) public twoRef: ViewContainerRef;
+
+    public instances: { [ name: string ]: DropdownInstance } = {};
 
     public constructor(private readonly dropdownService: DropdownService) {
 
     }
 
     public ngAfterViewInit() {
-
 
         const data$: ReplaySubject<any> = new ReplaySubject();
 
@@ -105,9 +107,10 @@ export class AppComponent implements AfterViewInit {
 
         ]);
 
-        const instance = this.dropdownService.open('one', 'one', this.one, {
+        this.instances[ 'one' ] = this.dropdownService.open('one', {
 
             name: 'one',
+
             rowComponentType: DataRowComponent,
             rowComponentPropertyName: 'data',
             closeAfterSelect: false,
@@ -134,13 +137,46 @@ export class AppComponent implements AfterViewInit {
 
             }
 
-        });
+        }, 'one');
 
-        instance.selected$.subscribe(selected => {
+        this.instances[ 'one' ].selected$.subscribe(selected => {
 
             console.log(selected);
 
         });
+
+
+        this.instances[ 'two' ] = this.dropdownService.open('two', {
+
+            name: 'two',
+
+            rowComponentType: DataRowComponent,
+            rowComponentPropertyName: 'data',
+            closeAfterSelect: false,
+            theme: DropdownThemes.dark,
+            data$,
+            selectedRenderFn: (item: any) => {
+
+                return item[ 'firstname' ];
+
+            },
+            componentConfig: {
+
+                top: {
+
+                    show: true
+
+                },
+
+                bottom: {
+
+                    show: true
+
+                }
+
+            }
+
+        }, this.twoRef);
 
     }
 

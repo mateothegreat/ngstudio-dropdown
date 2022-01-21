@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener, ElementRef, ViewChild } from '@angular
 import { DropdownConfig } from './dropdown-config';
 import { DropdownInstance } from './dropdown-instance';
 import { FormControl } from '@angular/forms';
+import { DropdownState } from './dropdown-state';
 
 @Component({
 
@@ -18,13 +19,12 @@ export class DropdownComponent implements OnInit {
     public config: DropdownConfig<any>;
     public instance: DropdownInstance;
     public control: FormControl = new FormControl();
-    public isOpen: boolean = true;
+    public isOpen: boolean;
     public filtered: Array<any>;
     public items: Array<any>;
 
     public constructor() {
 
-        console.log(11);
         this.control.valueChanges.subscribe(value => this.filter(value));
 
     }
@@ -76,7 +76,6 @@ export class DropdownComponent implements OnInit {
 
             this.control.reset();
 
-
             this.isOpen = true;
 
             setTimeout(() => {
@@ -86,6 +85,8 @@ export class DropdownComponent implements OnInit {
             }, 100);
 
         }
+
+        this.instance.state = this.isOpen ? DropdownState.OPEN : DropdownState.CLOSED;
 
     }
 
